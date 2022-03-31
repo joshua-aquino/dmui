@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Dw9ZluPwRjys9SL1TcAEcI39dG/tZaCsvSzTjGNG0ILhFdwRGt95z41aPEp7AGfxZ2Pwnk0Xtx3wkd2CelATdA==",
+  "success": true,
+  "projectFilePath": "/home/joshua/projects/dmui/dmui.csproj",
+  "expectedPackageFiles": [
+    "/home/joshua/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.2/microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "/home/joshua/.nuget/packages/microsoft.netframework.referenceassemblies.net472/1.0.2/microsoft.netframework.referenceassemblies.net472.1.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,9 @@
+/home/joshua/projects/dmui/.mono/temp/bin/Debug/dmui.dll
+/home/joshua/projects/dmui/.mono/temp/bin/Debug/dmui.pdb
+/home/joshua/projects/dmui/.mono/temp/obj/Debug/dmui.csproj.AssemblyReference.cache
+/home/joshua/projects/dmui/.mono/temp/obj/Debug/dmui.GeneratedMSBuildEditorConfig.editorconfig
+/home/joshua/projects/dmui/.mono/temp/obj/Debug/dmui.AssemblyInfoInputs.cache
+/home/joshua/projects/dmui/.mono/temp/obj/Debug/dmui.AssemblyInfo.cs
+/home/joshua/projects/dmui/.mono/temp/obj/Debug/dmui.csproj.CoreCompileInputs.cache
+/home/joshua/projects/dmui/.mono/temp/obj/Debug/dmui.dll
+/home/joshua/projects/dmui/.mono/temp/obj/Debug/dmui.pdb

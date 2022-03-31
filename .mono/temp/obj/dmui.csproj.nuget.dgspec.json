@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/joshua/projects/dmui/dmui.csproj": {}
+  },
+  "projects": {
+    "/home/joshua/projects/dmui/dmui.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/joshua/projects/dmui/dmui.csproj",
+        "projectName": "dmui",
+        "projectPath": "/home/joshua/projects/dmui/dmui.csproj",
+        "packagesPath": "/home/joshua/.nuget/packages/",
+        "outputPath": "/home/joshua/projects/dmui/.mono/temp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/joshua/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.2, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.102/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
