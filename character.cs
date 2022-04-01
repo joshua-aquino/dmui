@@ -25,14 +25,21 @@ public class character : Node
                 sprite.Set("frame", currFrame - 1);
             }
         }
+        GD.Print(sprite.Get("frame"));
+    }
+    
+    public void setFrame(byte frame){
+//        if (frame < maxFrames && frame > 0) {
+            sprite.Set("frame", frame);
+ //       }
+        GD.Print(sprite.Get("frame"));
     }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         sprite = this.GetNode("Sprite");
-        maxFrames = (byte)((int)sprite.Get("vframes") * (int)sprite.Get("hframes"));
-        GD.Print(sprite.Get("vframes"));
+        maxFrames = (byte)((int)sprite.Get("vframes") * (int)sprite.Get("hframes") - 1);
         GD.Print(maxFrames);
     }
 
