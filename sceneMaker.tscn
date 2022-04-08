@@ -1,0 +1,25 @@
+[gd_scene format=2]
+
+[node name="sceneMaker" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ranger1" type="MarginContainer" parent="."]
+margin_right = 104.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+
+[node name="ranger2" type="MarginContainer" parent="."]
+margin_left = 108.0
+margin_right = 212.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+
+[node name="fileView" type="MarginContainer" parent="."]
+margin_left = 216.0
+margin_right = 320.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
