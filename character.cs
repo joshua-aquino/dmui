@@ -31,6 +31,7 @@ public class character : Node
     public void setFrame(byte frame){
 //        if (frame < maxFrames && frame > 0) {
             sprite.Set("frame", frame);
+            sprite.Set("frame", frame);
  //       }
         GD.Print(sprite.Get("frame"));
     }
