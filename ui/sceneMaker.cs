@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.IO;
+using System.Linq;
+using System.Timers;
 
 public class sceneMaker : HBoxContainer
 {
@@ -8,21 +10,33 @@ public class sceneMaker : HBoxContainer
     // private int a = 2;
     // private string b = "text";
     private string FILEPATH = "./files";
-    private Node pane1, pane2;
+    private Node pane1, pane2, pane3;
     private PackedScene entryScene;
     private Button newEntryScene;
     private string currFilePath;
-    private string[] currEntries;
-    private string[] prevEntries;
-    private string[] nextEntries;
+    private string[] currEntries, prevEntries, nextEntries;
     private int selectedEntry = 0;
+    private System.Timers.Timer timer;
+    private void previewEntry()
+    {
+        if (timer.Enabled == false)
+        {
+            FileAttributes attr = System.IO.File.GetAttributes(currEntries[selectedEntry]);
+            // make a timer for preview so it only does it after a certain time
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                GD.Print("Its a directory");
+            else
+                GD.Print("Its a file");
+        }
+        timer.Enabled = true;
+    }
     
     private void printPane(Node pane, string[] entries)
     {
         foreach (string entry in entries) 
         {
             newEntryScene = (Button)entryScene.Instance();
-            newEntryScene.Set("entryName", entry);
+            newEntryScene.Set("entryName", entry.Split('/').Last());
             pane.AddChild(newEntryScene);
         }
     }
@@ -37,6 +51,7 @@ public class sceneMaker : HBoxContainer
                 {
                     selectedEntry++;
                     pane2.GetChild(selectedEntry).Call("grab_focus");
+                    previewEntry();
                 }
             break;
             case 2 : //up k
@@ -44,6 +59,7 @@ public class sceneMaker : HBoxContainer
                 {
                     selectedEntry--;
                     pane2.GetChild(selectedEntry).Call("grab_focus");
+                    previewEntry();
                 }
             break;
             case 3 : //right l
@@ -55,13 +71,14 @@ public class sceneMaker : HBoxContainer
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        timer = new System.Timers.Timer();
+        timer.Interval = 500;
         pane1 = this.GetChild(0).GetChild(0);
         pane2 = this.GetChild(1).GetChild(0);
+        pane3 = this.GetChild(2).GetChild(0);
         entryScene = (PackedScene)ResourceLoader.Load("res://ui/rangerEntry.tscn");
         currEntries = System.IO.Directory.GetFileSystemEntries(FILEPATH);
-        prevEntries = currEntries;
         
-        printPane(pane1, prevEntries);
         printPane(pane2, currEntries);
         
         pane2.GetChild(selectedEntry).Call("grab_focus");
