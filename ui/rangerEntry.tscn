@@ -2,10 +2,13 @@
 
 [ext_resource path="res://ui/rangerEntry.cs" type="Script" id=1]
 
-[node name="rangerEntry" type="Label"]
+[node name="rangerEntry" type="Button"]
 margin_right = 104.0
 margin_bottom = 180.0
 text = "template entry"
+flat = true
+clip_text = true
+align = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
