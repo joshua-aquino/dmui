@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/rangerEntry.cs" type="Script" id=1]
+
+[node name="rangerEntry" type="Label"]
+margin_right = 104.0
+margin_bottom = 180.0
+text = "template entry"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
