@@ -17,22 +17,55 @@ public class sceneMaker : HBoxContainer
     private string[] currEntries, prevEntries, nextEntries;
     private int selectedEntry = 0;
     private System.Timers.Timer timer;
-    private void previewEntry()
-    {
-        if (timer.Enabled == false)
-        {
-            FileAttributes attr = System.IO.File.GetAttributes(currEntries[selectedEntry]);
-            // make a timer for preview so it only does it after a certain time
-            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                GD.Print("Its a directory");
-            else
-                GD.Print("Its a file");
+    private void enterEntry() {
+        prevEntries = currEntries;
+        currEntries = nextEntries;
+        printPane(pane1, prevEntries);
+        printPane(pane2, currEntries);
+        printPane(pane3, nextEntries);
+        selectedEntry = 0;
+        pane2.GetChild(selectedEntry).Call("grab_focus");
+    }
+    private void previewEntry() {
+        FileAttributes attr = System.IO.File.GetAttributes(currEntries[selectedEntry]);
+        if ((attr & FileAttributes.Directory) == FileAttributes.Directory) {
+            GD.Print("Its a directory");
+            nextEntries = System.IO.Directory.GetFileSystemEntries(currEntries[selectedEntry]);
+            printPane(pane3, nextEntries);
+        } else {
+            GD.Print("Its a file");
+            nextEntries = new string[2]{"is", "file"};
+            printPane(pane3, nextEntries);
         }
-        timer.Enabled = true;
+    }
+    private void timedPreview()
+    {
+        if (!timer.Enabled)
+        {
+            previewEntry();
+            timer.Dispose();
+            timer = new System.Timers.Timer();
+            timer.Interval = 500;
+            timer.Elapsed += ( sender, e ) => { timer.Dispose(); };
+            timer.Start();
+        } else {
+            timer.Dispose();
+            timer = new System.Timers.Timer();
+            timer.Interval = 500;
+            timer.Elapsed += ( sender, e ) => { 
+                timer.Dispose();
+                previewEntry();
+            };
+            timer.Start();           
+        }
     }
     
     private void printPane(Node pane, string[] entries)
     {
+        foreach (Node n in pane.GetChildren()) {
+            pane.Call("remove_child", n);
+            n.Free();
+        }
         foreach (string entry in entries) 
         {
             newEntryScene = (Button)entryScene.Instance();
@@ -51,7 +84,7 @@ public class sceneMaker : HBoxContainer
                 {
                     selectedEntry++;
                     pane2.GetChild(selectedEntry).Call("grab_focus");
-                    previewEntry();
+                    timedPreview();
                 }
             break;
             case 2 : //up k
@@ -59,10 +92,11 @@ public class sceneMaker : HBoxContainer
                 {
                     selectedEntry--;
                     pane2.GetChild(selectedEntry).Call("grab_focus");
-                    previewEntry();
+                    timedPreview();
                 }
             break;
             case 3 : //right l
+                enterEntry();
             break;
         }
     }
@@ -73,11 +107,13 @@ public class sceneMaker : HBoxContainer
     {
         timer = new System.Timers.Timer();
         timer.Interval = 500;
+		timer.Elapsed += ( sender, e ) => { timer.Close(); };
         pane1 = this.GetChild(0).GetChild(0);
         pane2 = this.GetChild(1).GetChild(0);
         pane3 = this.GetChild(2).GetChild(0);
         entryScene = (PackedScene)ResourceLoader.Load("res://ui/rangerEntry.tscn");
         currEntries = System.IO.Directory.GetFileSystemEntries(FILEPATH);
+        nextEntries = new string[2]{"bob", "carl"};
         
         printPane(pane2, currEntries);
         
@@ -97,6 +133,9 @@ public class sceneMaker : HBoxContainer
     }
     if(Input.IsActionJustPressed("previous_entry")) {
         traverseEntry(2);
+    }
+    if(Input.IsActionJustPressed("in_entry")) {
+        traverseEntry(3);
     }
   }
 }
